@@ -3,9 +3,10 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
-    public Transform playerBody;
+    public Transform kuskinkamera;
 
     private float xRotation = 0f;
+    private float yRotation = 0f; // Uusi muuttuja horisontaaliselle liikkeelle
 
     void Start()
     {
@@ -15,12 +16,12 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+      
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Estää kameran pyörimisen yli
+        
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+        yRotation += mouseX; // Päivitetään yRotation muuttujalla
+
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f); // Liikutetaan kameraa myös sivuttaissuunnassa
     }
 }
