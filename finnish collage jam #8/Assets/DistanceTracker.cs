@@ -1,25 +1,44 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class DistanceTracker : MonoBehaviour
 {
-    public Transform player; // Pelaajan auto
-    public Text distanceText; // UI-teksti kilometreille
-    private Vector3 startPosition;
+    public Transform car; // Vedä auton GameObject tähän Unityssä
+    public TextMeshProUGUI distanceText; // Vedä TextMeshPro-teksti tähän Unityssä
+
+    private Vector3 lastPosition;
+    private float totalDistance = 0f;
 
     void Start()
     {
-        startPosition = player.position;
+        if (car != null)
+        {
+            lastPosition = car.position;
+        }
     }
 
     void Update()
     {
-        UpdateDistance();
-    }
+        if (car != null)
+        {
+            float distanceThisFrame = Vector3.Distance(car.position, lastPosition);
 
-    void UpdateDistance()
-    {
-        float distance = Vector3.Distance(startPosition, player.position) / 1000f; // Muutetaan metreistä kilometreiksi
-        distanceText.text = "Distance: " + distance.ToString("F2") + " km";
+            Vector3 direction = car.position - lastPosition;
+            if (Vector3.Dot(car.forward, direction) < 0)
+            {
+                totalDistance -= distanceThisFrame; // Vähennä matkaa, jos auto menee taaksepäin
+            }
+            else
+            {
+                totalDistance += distanceThisFrame; // Lisää matkaa, jos auto menee eteenpäin
+            }
+
+            lastPosition = car.position;
+
+            if (distanceText != null)
+            {
+                distanceText.text = "Matka ajettu: " + Mathf.RoundToInt(totalDistance) + " m";
+            }
+        }
     }
 }
