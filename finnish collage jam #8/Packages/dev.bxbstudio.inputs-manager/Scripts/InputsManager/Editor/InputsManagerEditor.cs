@@ -1,5 +1,5 @@
-﻿#region Namespaces
-
+﻿#if UNITY_EDITOR
+#region Namespaces
 using System;
 using System.IO;
 using System.Linq;
@@ -1575,3 +1575,4 @@ namespace Utilities.Inputs.Editor
 		#endregion
 	}
 }
+#endif

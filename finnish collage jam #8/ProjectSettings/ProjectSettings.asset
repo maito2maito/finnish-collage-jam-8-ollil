@@ -164,7 +164,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.PerfectGames.ArcadeCarControllerDrift
-    Standalone: com.PerfectGames.ACC_Lite
+    Standalone: com.DefaultCompany.Flashback-Drift-
   buildNumber:
     Standalone: 0
     VisionOS: 0

@@ -1,4 +1,5 @@
-﻿#region Namespaces
+﻿#if UNITY_EDITOR
+#region Namespaces
 
 using System;
 using UnityEngine;
@@ -45,3 +46,4 @@ namespace Utilities.Editor
 		}
 	}
 }
+#endif

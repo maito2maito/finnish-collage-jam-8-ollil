@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 #region Namespaces
 
 using System;
@@ -189,3 +190,4 @@ namespace Utilities.Editor
 		#endregion
 	}
 }
+#endif
